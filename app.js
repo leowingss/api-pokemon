@@ -12,7 +12,7 @@ const fetchPokemon = () => {
 
     Promise.all(pokemonPromises) // Quando todas as promises estiveram resolvidas, retorna uma promise.
         .then(pokemons => {
-            console.log(pokemons)
+
 
             const lisPokemons = pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
                 const types = pokemon.types.map(typeInfo => typeInfo.type.name) // variável que vai guardar os tipos dos pokemons.
@@ -25,6 +25,10 @@ const fetchPokemon = () => {
                 </li>`
                 return acum
             }, '')
+
+            const ul = document.querySelector('[data-js="pokedex"]')
+
+            console.log(lisPokemons)
         })
 }
 

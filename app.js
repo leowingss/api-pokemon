@@ -15,7 +15,11 @@ const fetchPokemon = () => {
             console.log(pokemons)
 
             const lisPokemons = pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
-                acum += ` <li>${pokemon.name}</li>`
+                acum += ` 
+                <li class="card">
+               <h2 class = "card-title ">${pokemon.id} ${pokemon.name}</h2>
+               <p class="card-subtitle">${pokemon.types}</p>
+                </li>`
                 return acum
             })
         })

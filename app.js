@@ -3,14 +3,14 @@ const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}` // id para
 const generatePokemonPromisess = () => Array(150).fill().map((_, index) =>
         fetch(getPokemonUrl(index + 1)).then(res => res.json())) // gerar e retornar um array de promises pokemons.
 
-const generateHTML = pokemons => pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
-    const types = pokemon.types.map(typeInfo => typeInfo.type.name) // variável que vai guardar os tipos dos pokemons.
+const generateHTML = pokemons => pokemons.reduce((acum, { name, id, types }) => { // reduzir o array em uma string.
+    const elementTypes = types.map(typeInfo => typeInfo.type.name) // variável que vai guardar os tipos dos pokemons.
 
     acum += ` 
-        <li class="card ${types[0]}" >
-        <img class= " card-image" alt="${pokemon.name}" src= "https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" />
-       <h2 class = "card-title ">${pokemon.id} ${pokemon.name}</h2>
-       <p class="card-subtitle">${types.join(' | ')}</p>
+        <li class="card ${elementTypes[0]}" >
+        <img class= " card-image" alt="${name}" src= "https://pokeres.bastionbot.org/images/pokemon/${id}.png" />
+       <h2 class = "card-title ">${id} ${name}</h2>
+       <p class="card-subtitle">${elementTypes.join(' | ')}</p>
         </li>`
     return acum
 }, '')

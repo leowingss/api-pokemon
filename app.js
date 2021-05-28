@@ -1,7 +1,8 @@
 //Função que vai buscar os Pokemons
 const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}` // id para representar todos os pokemons
 const fetchPokemon = () => {
-    const generatePokemonPromisess = () => {} // gerar e retornar um array de promises pokemons.
+    const generatePokemonPromisess = () => Array(150).fill().map((_, index) =>
+            fetch(getPokemonUrl(i)).then(res => res.json())) // gerar e retornar um array de promises pokemons.
 
     // const pokemonPromises = [] // Usar o for para preencher o array vazio.
 

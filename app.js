@@ -4,7 +4,7 @@ const fetchPokemon = () => {
 
     const pokemonPromises = []
 
-    for (const i = 1; i <= 150; i++) { //  cada loop, a promise seja adicionada em um array de promise
+    for (let i = 1; i <= 150; i++) { //  cada loop, a promise seja adicionada em um array de promise
         pokemonPromises.push(fetch(getPokemonUrl(i)).then(res => res.json())) // a cada iteração adicionar um item no final do array.
             // requisição http(AJAX)
             // fetch retorna uma promise, usar o then
@@ -28,7 +28,7 @@ const fetchPokemon = () => {
 
             const ul = document.querySelector('[data-js="pokedex"]')
 
-            console.log(lisPokemons)
+            ul.innerHTML = lisPokemons
         })
 }
 

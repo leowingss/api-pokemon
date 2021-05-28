@@ -15,10 +15,13 @@ const fetchPokemon = () => {
             console.log(pokemons)
 
             const lisPokemons = pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
+                const types = pokemon.types.map(typeInfo => typeInfo.type.name) // variável que vai guardar os tipos dos pokemons.
+
                 acum += ` 
                 <li class="card">
+                <img class= " card-image ${types[0]}" 
                <h2 class = "card-title ">${pokemon.id} ${pokemon.name}</h2>
-               <p class="card-subtitle">${pokemon.types.map(typeInfo => typeInfo.type.name).join(' | ')}</p>
+               <p class="card-subtitle">${types.join(' | ')}</p>
                 </li>`
                 return acum
             }, '')

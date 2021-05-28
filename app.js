@@ -2,9 +2,12 @@
 const fetchPokemon = () => {
     const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}` // id para representar todos os pokemons
 
-    for (const i = 1; i <= 150; i++) {
-        fetch(getPokemonUrl) // requisição http(AJAX)
-            .then(res => res.json) // fetch retorna uma promise, usar o then
+    const pokemonPromises = []
+
+    for (const i = 1; i <= 150; i++) { //  cada loop, a promise seja adicionada em um array de promise
+        pokemonPromises.push(fetch(getPokemonUrl(i)).then(res => res.json)) // a cada iteração adicionar um item no final do array.
+            // requisição http(AJAX)
+            // fetch retorna uma promise, usar o then
     }
 
 }

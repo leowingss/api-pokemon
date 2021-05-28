@@ -13,6 +13,11 @@ const fetchPokemon = () => {
     Promise.all(pokemonPromises) // Quando todas as promises estiveram resolvidas, retorna uma promise.
         .then(pokemons => {
             console.log(pokemons)
+
+            const lisPokemons = pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
+                acum += ` <li>${pokemon.name}</li>`
+                return acum
+            })
         })
 }
 

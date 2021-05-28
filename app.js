@@ -18,7 +18,7 @@ const fetchPokemon = () => {
                 acum += ` 
                 <li class="card">
                <h2 class = "card-title ">${pokemon.id} ${pokemon.name}</h2>
-               <p class="card-subtitle">${pokemon.types}</p>
+               <p class="card-subtitle">${pokemon.types.map(typeInfo => typeInfo.type.name)}</p>
                 </li>`
                 return acum
             })

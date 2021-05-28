@@ -16,7 +16,7 @@ const fetchPokemon = () => {
         .then(pokemons => {
 
 
-            const lisPokemons = pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
+            return pokemons.reduce((acum, pokemon) => { // reduzir o array em uma string.
                 const types = pokemon.types.map(typeInfo => typeInfo.type.name) // variável que vai guardar os tipos dos pokemons.
 
                 acum += ` 
@@ -28,9 +28,12 @@ const fetchPokemon = () => {
                 return acum
             }, '')
 
-            const ul = document.querySelector('[data-js="pokedex"]')
 
-            ul.innerHTML = lisPokemons // inserindo li dentro da ul.
+        })
+        .then(pokemons => { // conter uma função e inserir a const ul e as li nas páginas
+            const ul = document.querySelector('[data-js="pokedex"]') // Inserindo LI na página
+            ul.innerHTML = pokemons // inserindo li dentro da ul.
+
         })
 }
 

@@ -1,14 +1,15 @@
 //Função que vai buscar os Pokemons
+const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}` // id para representar todos os pokemons
 const fetchPokemon = () => {
-    const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}` // id para representar todos os pokemons
+    const generatePokemonPromisess = () => {} // gerar e retornar um array de promises pokemons.
 
-    const pokemonPromises = []
+    // const pokemonPromises = [] // Usar o for para preencher o array vazio.
 
-    for (let i = 1; i <= 150; i++) { //  cada loop, a promise seja adicionada em um array de promise
-        pokemonPromises.push(fetch(getPokemonUrl(i)).then(res => res.json())) // a cada iteração adicionar um item no final do array.
-            // requisição http(AJAX)
-            // fetch retorna uma promise, usar o then
-    }
+    // for (let i = 1; i <= 150; i++) { //  cada loop, a promise seja adicionada em um array de promise
+    //     pokemonPromises.push(fetch(getPokemonUrl(i)).then(res => res.json())) // a cada iteração adicionar um item no final do array.
+    //         // requisição http(AJAX)
+    //         // fetch retorna uma promise, usar o then
+    // }
 
     Promise.all(pokemonPromises) // Quando todas as promises estiveram resolvidas, retorna uma promise.
         .then(pokemons => {
@@ -18,8 +19,8 @@ const fetchPokemon = () => {
                 const types = pokemon.types.map(typeInfo => typeInfo.type.name) // variável que vai guardar os tipos dos pokemons.
 
                 acum += ` 
-                <li class="card">
-                <img class= " card-image ${types[0]}" alt="${pokemon.name} src= "https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" />
+                <li class="card ${types[0]}" >
+                <img class= " card-image" alt="${pokemon.name}" src= "https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" />
                <h2 class = "card-title ">${pokemon.id} ${pokemon.name}</h2>
                <p class="card-subtitle">${types.join(' | ')}</p>
                 </li>`
@@ -28,7 +29,7 @@ const fetchPokemon = () => {
 
             const ul = document.querySelector('[data-js="pokedex"]')
 
-            ul.innerHTML = lisPokemons
+            ul.innerHTML = lisPokemons // inserindo li dentro da ul.
         })
 }
 
